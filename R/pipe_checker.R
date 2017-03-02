@@ -29,16 +29,15 @@ pipe_checker <- function(label = NULL,
   .answer <- user_code
   result <- eval(parse(text = check_code))
 
-  if(is_failure(result)) {
-    txt <- extract_message(result)
-    return(list(message = txt,
-                correct = FALSE,
-                type = "error",
-                location = "append"))
-  } else {
-    return(list(message = "Good Job!",
-                correct = TRUE,
-                type = "success",
-                location = "append"))
-  }
+  message <- build_message(result)
+  correct <- if(result$status == "fail") FALSE else TRUE
+  type <- switch(result$status,
+                 "pass" = "success",
+                 "warn" = "warning",
+                 "fail" = "info") # blue is less discouraging than red
+
+  list(message = message,
+       correct = correct,
+       type = type,
+       location = "prepend")
 }

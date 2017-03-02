@@ -4,10 +4,11 @@
 \alias{code_calls}
 \title{Check whether code calls a desired function or object}
 \usage{
-code_calls(code, call, message = paste("I expected to see a call to", call))
+code_calls(submission, call, message = paste("I expected to see a call to",
+  call), warn = FALSE, praise = NULL)
 }
 \arguments{
-\item{code}{The code to check, as a character string, or the output of a
+\item{submission}{The code to check, as a character string, or the output of a
 previous check function. If you are using `code_calls()` within a tutor
 document, set code to the special name `.answer`.}
 
@@ -16,6 +17,17 @@ string.}
 
 \item{message}{A character string of feedback to display if the code fails
 the check}
+
+\item{warn}{`TRUE` or `FALSE`: should grading continue if condition is unmet?
+If `TRUE`, `code_calls()` will mark the submission as a warning and pass
+the submission to the next check in the checking pipe. In this case,
+`code_calls()` will append the message to the list of messages to be
+displayed when checking completes.}
+
+\item{praise}{A character string of feedback to display if the code passes
+the check. If a submission receives more than one praise. When checking
+finishes, magrader will display all of the warnings and praises that have
+accumulated for a submission.}
 }
 \value{
 If the code passes the check, `code_calls()` returns the original

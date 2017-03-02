@@ -2,20 +2,20 @@
 % Please edit documentation in R/fail_with.R
 \name{fail_with}
 \alias{fail_with}
-\title{Create a failure message}
+\title{Mark a submission as a failure}
 \usage{
-fail_with(message)
+fail_with(submission, message = NULL)
 }
 \arguments{
-\item{message}{A character string to display to the student.}
+\item{submission}{Student code provided as a character string by tutor, or a
+submission object created by magrader}
+
+\item{message}{A character string to display to the student}
 }
 \value{
-A character string with the S3 class "failure"
+A magrader submission object with the status "fail"
 }
 \description{
-Returns a feedback message that can be piped through downstream checks
+Returns a magrader submission object that can be piped through downstream checks
 without triggering the checks.
-}
-\examples{
-fail_with("Did you remember to use na.rm = TRUE?")
 }

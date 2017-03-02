@@ -2,7 +2,7 @@ Package: magrader
 Title: A simple checking scheme for tutor based on magrittr pipes
 Version: 0.0.0.9000
 Authors@R: person("Garrett", "Grolemund", email = "garrett@rstudio.com", role = c("aut", "cre"))
-Description: Functions that let authors use simple pipes to grade interactive tutorials written in the tutor R Markdown format
+Description: Functions that let authors use simple pipes to grade interactive tutorials written in the tutor R Markdown format.
 Depends: R (>= 3.3.2)
 License: CC0
 Encoding: UTF-8

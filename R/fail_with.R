@@ -1,16 +1,25 @@
-
-#' Create a failure message
+#' Mark a submission as a failure
 #'
-#' Returns a feedback message that can be piped through downstream checks
+#' Returns a magrader submission object that can be piped through downstream checks
 #' without triggering the checks.
 #'
-#' @param message A character string to display to the student.
+#' @param submission Student code provided as a character string by tutor, or a
+#'   submission object created by magrader
+#' @param message A character string to display to the student
 #'
-#' @return A character string with the S3 class "failure"
-#' @export
-#'
-#' @examples
-#' fail_with("Did you remember to use na.rm = TRUE?")
-fail_with <- function(message) {
-  structure(message, class = "failure")
+#' @return A magrader submission object with the status "fail"
+fail_with <- function(submission, message = NULL) {
+
+  if (is.null(message)) stop("Please provide a failure message for the student.")
+
+  if(is_submission(submission)) {
+    submission$status <- "fail"
+    submission$feedback <- message
+    submission
+  } else {
+    structure(list(code = submission,
+                   status = "fail",
+                   feedback = message),
+              class = "submission")
+  }
 }
