@@ -2,6 +2,7 @@
 
 export(build_message)
 export(code_calls)
+export(code_calls_either)
 export(extract_message)
 export(is_failure)
 export(is_submission)
