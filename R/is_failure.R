@@ -9,5 +9,5 @@
 #' @return `TRUE` or `FALSE`
 #' @export
 is_failure <- function(ans) {
-  "failure" %in% class(ans)
+  is_submission(ans) && ans$status == "fail"
 }

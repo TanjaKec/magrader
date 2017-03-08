@@ -7,19 +7,15 @@
 #'
 #' @export
 build_message <- function(submission) {
-
-  message <- switch(submission$status,
-                    "pass" = "Good Job!",
-                    "warn" = "Well done, but be careful:",
-                    "fail" = "Sorry!")
-
-  if (!is.null(submission$feedback)) {
-    if (length(submission$feedback) > 1) {
-      add_ons <- paste(submission$feedback, collapse = " ")
-      message <- paste(message, add_ons, sep = " ")
-    } else {
-      message <- paste(message, submission$feedback)
-    }
-  }
-  message
+  switch(submission$status,
+        "pass" = paste("Good Job!",
+                       paste(submission$praise, collapse = " ")),
+        "warn" = paste("Well done.",
+                       paste(submission$praise, collapse = " "),
+                       "But be careful:",
+                       paste(submission$warnings, collapse = " ")),
+        "fail" = paste("Sorry!",
+                       submission$failure,
+                       "Also look out for these things:",
+                       paste(submission$warnings, collapse = " ")))
 }

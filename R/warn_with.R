@@ -15,12 +15,9 @@ warn_with <- function(submission, message = NULL) {
 
   if(is_submission(submission)) {
     submission$status <- "warn"
-    submission$feedback <- c(submission$feedback, message)
+    submission$warnings <- c(submission$warnings, message)
     submission
   } else {
-    structure(list(code = submission,
-                   status = "warn",
-                   feedback = message),
-              class = "submission")
+    make_submission(answer = submission, status = "warn", warnings = message)
   }
 }

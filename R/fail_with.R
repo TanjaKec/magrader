@@ -14,12 +14,9 @@ fail_with <- function(submission, message = NULL) {
 
   if(is_submission(submission)) {
     submission$status <- "fail"
-    submission$feedback <- message
+    submission$failure <- message
     submission
   } else {
-    structure(list(code = submission,
-                   status = "fail",
-                   feedback = message),
-              class = "submission")
+    make_submission(answer = submission, status = "fail", failure = message)
   }
 }

@@ -4,13 +4,13 @@
 \alias{pass_with}
 \title{Mark a submission as a pass}
 \usage{
-pass_with(submission, message = NULL)
+pass_with(submission, praise = NULL)
 }
 \arguments{
 \item{submission}{Student code provided as a character string by tutor, or a
 submission object created by magrader}
 
-\item{message}{A character string to display to the student}
+\item{praise}{A character string to display to the student}
 }
 \value{
 An S3 submission object
